@@ -10,7 +10,7 @@ describe("User authenticated", () => {
         cy.get("#password").type("password");
         cy.get('button').contains('Submit').click()
       });
-      cy.get("#message").should("contain", "Hi user@mail.com");
+      cy.get("#message").should("contain", "welcome back");
     });
   
     it("unsuccessfully with invalid credentials", () => {
