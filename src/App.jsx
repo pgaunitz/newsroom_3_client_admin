@@ -6,7 +6,7 @@ class App extends Component {
   state = {
     renderLoginForm: false,
     authenticated: false,
-    message: "welcome back"
+    message: ""
   };
 
   onChangeHandler = e => {
@@ -22,10 +22,7 @@ class App extends Component {
     if (response.authenticated) {
       this.setState({ authenticated: true });
     } else {
-      this.setState({
-        message: "invalid login credentials, please try again",
-        renderLoginForm: false
-      });
+      this.setState({ message: response.message, renderLoginForm: false });
     }
   };
 
@@ -33,18 +30,35 @@ class App extends Component {
     const { renderLoginForm, authenticated, message } = this.state;
     let renderLogin;
     switch (true) {
-      case renderLoginForm && !authenticated:
+      case renderLoginForm && authenticated:
         renderLogin = <LoginForm submitFormHandler={this.onLogin} />;
         break;
-      case !renderLogin && !authenticated:
-        return (
+      case !renderLoginForm && !authenticated:
+        renderLogin = (
           <>
-            <LoginForm onChangeHandler={this.onChangeHandler} />
-            {renderLogin}
-            {this.state.authenticated === true && message}
+            <button
+              id="login"
+              onclick={() => this.setState({ renderloginForm: true })}
+            >
+              Login
+            </button>
+            <p>{message}</p>
           </>
         );
+        break;
+      case authenticated:
+        renderLogin = (
+          <p> Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}</p>
+        );
+        break;
     }
+
+    return (
+      <>
+        <LoginForm onChangeHandler={this.onChangeHandler} />
+        {renderLogin}
+      </>
+    );
   }
 }
 
