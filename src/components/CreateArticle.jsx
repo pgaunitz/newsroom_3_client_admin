@@ -1,6 +1,16 @@
 import React, { Component } from 'react'
 
 class CreateArticle extends Component {
+
+  submitArticle = async event => {
+    debugger
+    let response = await submitArticle(
+      event.target.elements.title.value,
+      event.target.elements.snippet.value,
+      event.target.elements.content.value
+    )
+  }
+
   render() {
     return (
       <>
