@@ -10,6 +10,12 @@ class CreateArticle extends Component {
       event.target.elements.snippet.value,
       event.target.elements.content.value
     )
+    
+    if (response.status === 200 ) { 
+      debugger;
+      } else {
+        debugger; 
+      } 
   }
 
   render() {
