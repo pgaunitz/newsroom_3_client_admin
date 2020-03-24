@@ -21,8 +21,8 @@ class CreateArticle extends Component {
         <input  name="title" placeholder = "Title"/>
         <input name = "snippet" placeholder = "Snippet"/>
         <input name = "content" placeholder = "Content" />
+        <button type="submit">Create Article</button>
       </form>
-      <button type="submit">Create Article</button>
       </>
     )
   }
