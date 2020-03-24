@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { submitArticle } from "../modules/articleRequest"
 
 class CreateArticle extends Component {
-
-  submitArticle = async event => {
+  
+  createArticle = async event => {
     debugger
     let response = await submitArticle(
       event.target.elements.title.value,
@@ -15,7 +16,7 @@ class CreateArticle extends Component {
     return (
       <>
       <form
-       onSubmit= {this.submitArticle}
+       onSubmit= {this.createArticle}
       >
         <input  name="title" placeholder = "Title"/>
         <input name = "snippet" placeholder = "Snippet"/>
@@ -27,4 +28,4 @@ class CreateArticle extends Component {
   }
 }
 
-export default CreateArticle
+export default CreateArticle;
