@@ -4,7 +4,7 @@ import { submitArticle } from "../modules/articleRequest"
 class CreateArticle extends Component {
   
   createArticle = async event => {
-    debugger
+    event.preventDefault()
     let response = await submitArticle(
       event.target.elements.title.value,
       event.target.elements.snippet.value,
