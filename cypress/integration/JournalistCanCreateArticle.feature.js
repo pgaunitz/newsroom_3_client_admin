@@ -3,7 +3,7 @@ describe("journalist can creates article", () => {
     cy.server();
     cy.route({
       method: "POST",
-      url: "http://localhost:3000/api/v1/articles",
+      url: "https://newsroom3api.herokuapp.com/api/v1/articles",
       response: "fixture:article_success_message.json"
     });
     cy.visit("/");
@@ -25,7 +25,7 @@ describe("journalist can not create emty article", () => {
     cy.server();
     cy.route({
       method: "POST",
-      url: "http://localhost:3000/api/v1/articles",
+      url: "https://newsroom3api.herokuapp.com/api/v1/articles",
       response: "fixture:article_error_message.json"
     });
     cy.visit("/");
