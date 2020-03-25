@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { submitArticle } from "../modules/articleRequest"
 
 class CreateArticle extends Component {
+  state = {
+    message: ""
+  };
   
   createArticle = async event => {
     event.preventDefault()
@@ -12,10 +15,12 @@ class CreateArticle extends Component {
     )
     
     if (response.status === 200 ) { 
-      debugger;
+      debugger
+      this.setState ({ message: response.data.message })
       } else {
-        debugger; 
-      } 
+        debugger
+      this.setState ({ message: response.data.message})
+      }
   }
 
   render() {
@@ -29,6 +34,7 @@ class CreateArticle extends Component {
         <input name = "content" placeholder = "Content" />
         <button type="submit">Create Article</button>
       </form>
+    <p>{this.state.message}</p>
       </>
     )
   }

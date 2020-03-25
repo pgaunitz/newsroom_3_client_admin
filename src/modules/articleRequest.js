@@ -10,7 +10,7 @@ try {
         snippet: snippet,
         content: content
     }
-    debugger
+    
  
 response = await axios.post("http://localhost:3000/api/v1/articles",
     {article: articleParams}
