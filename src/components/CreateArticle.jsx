@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { submitArticle } from "../modules/articleRequest";
+import axios from "axios";
 
 class CreateArticle extends Component {
   state = {
@@ -8,17 +8,21 @@ class CreateArticle extends Component {
 
   createArticle = async event => {
     event.preventDefault();
-    let response = await submitArticle(
-      event.target.elements.title.value,
-      event.target.elements.snippet.value,
-      event.target.elements.content.value
+    let response = await axios.post(
+      "/articles",
+      {
+        article: {
+          title: event.target.elements.title.value,
+          snippet: event.target.elements.snippet.value,
+          content: event.target.elements.content.value
+        }
+      },
+      { headers: { "Content-Type": "application/json" } }
     );
 
     if (response.status === 200) {
-      debugger;
       this.setState({ message: response.data.message });
     } else {
-      debugger;
       this.setState({ message: response.data.message });
     }
   };
@@ -26,13 +30,15 @@ class CreateArticle extends Component {
   render() {
     return (
       <>
-        <form onSubmit={this.createArticle}>
-          <input name="title" placeholder="Title" />
-          <input name="snippet" placeholder="Snippet" />
-          <input name="content" placeholder="Content" />
-          <button type="submit">Create Article</button>
+        <form id="new-article-form" onSubmit={this.createArticle}>
+          <input id="title-field" name="title" placeholder="Title" />
+          <input id="snippet-field" name="snippet" placeholder="Snippet" />
+          <textarea id="title-content" name="content" placeholder="Content" />
+          <button id="create-article" type="submit">
+            Create Article
+          </button>
         </form>
-        <p>{this.state.message}</p>
+        <p id="message">{this.state.message}</p>
       </>
     );
   }
