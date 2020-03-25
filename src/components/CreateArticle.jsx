@@ -12,18 +12,19 @@ class CreateArticle extends Component {
       "/articles",
       {
         article: {
-          title: event.target.elements.title.value,
-          snippet: event.target.elements.snippet.value,
-          content: event.target.elements.content.value
+          title: event.target.title.value,
+          snippet: event.target.snippet.value,
+          content: event.target.content.value
         }
       },
       { headers: { "Content-Type": "application/json" } }
     );
 
     if (response.status === 200) {
+      debugger;
       this.setState({ message: response.data.message });
     } else {
-      this.setState({ message: response.data.message });
+      this.setState({ message: response.data.error });
     }
   };
 

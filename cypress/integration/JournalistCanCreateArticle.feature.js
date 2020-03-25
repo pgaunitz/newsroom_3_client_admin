@@ -1,5 +1,5 @@
 describe("journalist successfully creates article", () => {
-  beforeEach(() => {
+  before(() => {
     cy.server();
     cy.route({
       method: "POST",
@@ -18,4 +18,3 @@ describe("journalist successfully creates article", () => {
     cy.get("#message").should("contain", "Your article was saved");
   });
 });
-
