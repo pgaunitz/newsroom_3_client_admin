@@ -21,7 +21,6 @@ class CreateArticle extends Component {
     );
 
     if (response.status === 200) {
-      debugger;
       this.setState({ message: response.data.message });
     } else {
       this.setState({ message: response.data.error });
