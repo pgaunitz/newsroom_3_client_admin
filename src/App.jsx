@@ -1,13 +1,12 @@
-import React from 'react'
-import CreateArticle from './components/CreateArticle'
+import React from "react";
+import CreateArticle from "./components/CreateArticle";
 
 const App = () => {
   return (
     <div>
-  <CreateArticle />
+      <CreateArticle />
     </div>
-  )
-}
+  );
+};
 
-export default App
-
+export default App;
