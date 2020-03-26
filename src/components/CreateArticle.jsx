@@ -14,7 +14,8 @@ class CreateArticle extends Component {
         article: {
           title: event.target.title.value,
           snippet: event.target.snippet.value,
-          content: event.target.content.value
+          content: event.target.content.value,
+          category: event.target.category.value
         }
       },
       { headers: { "Content-Type": "application/json" } }
@@ -34,6 +35,13 @@ class CreateArticle extends Component {
           <input id="title-field" name="title" placeholder="Title" />
           <input id="snippet-field" name="snippet" placeholder="Snippet" />
           <textarea id="title-content" name="content" placeholder="Content" />
+          <select id="category-menu" name="category">
+            <option value="latest_news">Latest news</option>
+            <option value="tech">Tech</option>
+            <option value="sports">Sports</option>
+            <option value="politics">Politics</option>
+            <option value="culture">Culture</option>
+          </select>
           <button id="create-article" type="submit">
             Create Article
           </button>

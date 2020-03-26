@@ -14,6 +14,7 @@ describe("journalist can creates article", () => {
       cy.get("#title-field").type("this is a title");
       cy.get("#snippet-field").type("this is a snippet");
       cy.get("#title-content").type("this is a content");
+      cy.get("#category-menu").select("Tech");
       cy.get("#create-article").click();
     });
     cy.get("#message").should("contain", "Your article was saved");
@@ -35,6 +36,7 @@ describe("journalist can not create emty article", () => {
     cy.get("#new-article-form").within(() => {
       cy.get("#snippet-field").type("this is a snippet");
       cy.get("#title-content").type("this is a content");
+      cy.get("#category-menu").select("Tech");
       cy.get("#create-article").click();
     });
     cy.get("#message").should("contain", "Title can't be blank");
