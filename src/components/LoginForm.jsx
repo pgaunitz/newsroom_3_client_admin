@@ -1,47 +1,52 @@
 import React from "react";
-import auth from "./modules/auth";
+import auth from "../modules/auth";
 import { connect } from "react-redux";
-import { bindActionCreators} from "redux"
+import { AUTHENTICATE } from "../state/actions/actionTypes";
 
-const LoginForm = props =>  {
- const onLogin = (email, password) => (
- props.authentication(email, password)
- )
-  onLogout = () => {
-    auth.signOut();
+const LoginForm = props => {
 
-    this.props.dispatch({
-      type: "AUTHENTICATE",
-      payload: { authenticated: false, userEmail: null }
-    });
-  };
-
-  
-    let login;
-
-    if (this.props.authenticated) {
-      login = (
-        <>
-          <p>Hello {this.props.userEmail}</p>
-          <button onClick={this.onLogout}>Logout</button>
-        </>
+  const onLogin = async e => {
+    try {
+      e.preventDefault();
+      debugger
+      let response = await auth.signIn(
+        e.target.elements.email.value,
+        e.target.elements.password.value
       );
-    } else {
-      login = (
-        <form onSubmit={() => onLogin (email.value, password.value)}>
-          <input name="email" placeholder="Email" />
-          <input name="password" type="password" placeholder="Password" />
-          <button type="submit">Login</button>
-        </form>
-      );
+      debugger
+      props.dispatch({
+        type: AUTHENTICATE,
+        payload: { authenticated: true, userEmail: response.data.email }
+      });
+    } catch (error) {
+      console.log(error);
     }
-    return <div>{login}</div>;
-  
-}
+  };
+  let login;
+
+  if (props.authenticated) {
+    login = (
+      <>
+        <p id='message'>Hello {props.userEmail}</p>
+        {/* <button onClick={onLogout}>Logout</button> */}
+      </>
+    );
+  } else {
+    login = (
+      <form id='login-form' onSubmit={onLogin}>
+        <input id='email' name="email" placeholder="Email" />
+        <input id='password'name="password" type="password" placeholder="Password" />
+        <button type="submit">Login</button>
+      </form>
+    );
+  }
+  return <div>{login}</div>;
+};
+
 const mapStateToProps = state => {
   return {
-    userEmail: state.auth.userEmail,
-    authenticated: state.auth.authenticated
+    userEmail: state.userEmail,
+    authenticated: state.authenticated
   };
 };
 export default connect(mapStateToProps)(LoginForm);
