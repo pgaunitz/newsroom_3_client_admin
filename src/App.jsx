@@ -1,5 +1,6 @@
 import React from "react";
 import CreateArticle from "./components/CreateArticle";
+import LoginForm from "./components/LoginForm"
 
 const App = () => {
   return (
@@ -8,5 +9,6 @@ const App = () => {
     </div>
   );
 };
+
 
 export default App;
