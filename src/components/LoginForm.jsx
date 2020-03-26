@@ -1,30 +1,47 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { onLogout, onLogin } from "../modules/auth";
+import auth from "./modules/auth";
+import { connect } from "react-redux";
+import { bindActionCreators} from "redux"
 
-const LoginForm = () => {
-  const dispatch = useDispatch();
-  const authenticated = useSelector(state => state.state.auth.authenticated);
-  let login;
-  if (authenticated) {
-    login = <button onClick={() => onLogout(dispatch)}>Logout</button>;
-  } else {
-    login = (
-      <form onSubmit={event => onLogin(event, dispatch)} id="login-form">
-        <label>Email</label>
-        <input name="email" type="email" id="email"></input>
+const LoginForm = props =>  {
+ const onLogin = (email, password) => (
+ props.authentication(email, password)
+ )
+  onLogout = () => {
+    auth.signOut();
 
-        <label>Password</label>
-        <input name="password" type="password" id="password"></input>
+    this.props.dispatch({
+      type: "AUTHENTICATE",
+      payload: { authenticated: false, userEmail: null }
+    });
+  };
 
-        <button id="login" type="submit">
-          Login
-        </button>
-      </form>
-    );
-  }
+  
+    let login;
 
-  return { login };
+    if (this.props.authenticated) {
+      login = (
+        <>
+          <p>Hello {this.props.userEmail}</p>
+          <button onClick={this.onLogout}>Logout</button>
+        </>
+      );
+    } else {
+      login = (
+        <form onSubmit={() => onLogin (email.value, password.value)}>
+          <input name="email" placeholder="Email" />
+          <input name="password" type="password" placeholder="Password" />
+          <button type="submit">Login</button>
+        </form>
+      );
+    }
+    return <div>{login}</div>;
+  
+}
+const mapStateToProps = state => {
+  return {
+    userEmail: state.auth.userEmail,
+    authenticated: state.auth.authenticated
+  };
 };
-
-export default  LoginForm;
+export default connect(mapStateToProps)(LoginForm);
