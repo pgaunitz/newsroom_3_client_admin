@@ -5,6 +5,7 @@ import LoginForm from "./components/LoginForm"
 const App = () => {
   return (
     <div>
+      <LoginForm/>
       <CreateArticle />
     </div>
   );
