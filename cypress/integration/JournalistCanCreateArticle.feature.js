@@ -1,10 +1,21 @@
+
 describe("journalist can creates article", () => {
-  before(() => {
+  beforeEach(() => {
     cy.server();
     cy.route({
       method: "POST",
-      url: "https://newsroom3api.herokuapp.com/api/v1/articles",
+      url: "/articles",
       response: "fixture:article_success_message.json"
+    });
+    cy.route({
+      method: "POST",
+      url: "http://localhost:3000/api/v1/auth/**",
+      response: "fixture:login.json"
+    });
+    cy.route({
+      method: "GET",
+      url: "http://localhost:3000/api/v1/auth/**",
+      response: "fixture:login.json"
     });
     cy.visit("/");
 
