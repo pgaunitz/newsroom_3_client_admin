@@ -6,16 +6,16 @@ import { connect } from "react-redux";
 const App = props => {
   return (
     <div>
-      <LoginForm/>
+      <LoginForm />
       {props.authenticated && <CreateArticle />}
     </div>
   );
 };
 
 const mapStateToProps = state => {
-return {
-  authenticated: state.authenticated
-}
-}
+  return {
+    authenticated: state.authenticated
+  };
+};
 
 export default connect(mapStateToProps)(App);
