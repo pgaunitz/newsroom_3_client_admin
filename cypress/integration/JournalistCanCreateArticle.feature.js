@@ -7,6 +7,7 @@ describe("journalist can creates article", () => {
       response: "fixture:article_success_message.json"
     });
     cy.visit("/");
+
   });
 
   it("succefully creates first article", () => {
