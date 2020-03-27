@@ -46,7 +46,7 @@ class CreateArticle extends Component {
             Create Article
           </button>
         </form>
-        <p id="message">{this.state.message}</p>
+        <p id="response-message">{this.state.message}</p>
       </>
     );
   }
