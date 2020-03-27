@@ -1,5 +1,5 @@
 describe("journalist can creates article", () => {
-  before(() => {
+  beforeEach(() => {
     cy.server();
     cy.route({
       method: "POST",
@@ -7,9 +7,19 @@ describe("journalist can creates article", () => {
       response: "fixture:article_success_message.json"
     });
     cy.visit("/");
-  });
+    cy.window()
+      .then(window => {
+        window.store.dispatch(
+          {
+            type: "AUTHENTICATE",
+            payload: { authenticated: true, userEmail: 'admin@times.ma' }
+          }
+        )
+      })
+  })
 
-  it("succefully creates first article", () => {
+
+  it("authenticated user succefully creates first article", () => {
     cy.get("#new-article-form").within(() => {
       cy.get("#title-field").type("this is a title");
       cy.get("#snippet-field").type("this is a snippet");
@@ -17,12 +27,12 @@ describe("journalist can creates article", () => {
       cy.get("#category-menu").select("Tech");
       cy.get("#create-article").click();
     });
-    cy.get("#message").should("contain", "Your article was saved");
+    cy.get("#response-message").should("contain", "Your article was saved");
   });
 });
 
 describe("journalist can not create emty article", () => {
-  before(() => {
+  beforeEach(() => {
     cy.server();
     cy.route({
       method: "POST",
@@ -30,6 +40,15 @@ describe("journalist can not create emty article", () => {
       response: "fixture:article_error_message.json"
     });
     cy.visit("/");
+    cy.window()
+      .then(window => {
+        window.store.dispatch(
+          {
+            type: "AUTHENTICATE",
+            payload: { authenticated: true, userEmail: 'admin@times.ma' }
+          }
+        )
+      })
   });
 
   it("can not create article without title", () => {
@@ -39,6 +58,6 @@ describe("journalist can not create emty article", () => {
       cy.get("#category-menu").select("Tech");
       cy.get("#create-article").click();
     });
-    cy.get("#message").should("contain", "Title can't be blank");
+    cy.get("#response-message").should("contain", "Title can't be blank");
   });
 });

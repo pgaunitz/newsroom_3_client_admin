@@ -1,0 +1,10 @@
+{
+  "data": {
+    "id": 1,
+    "email": "admin@times.ma",
+    "provider": "email",
+    "uid": "admin@times.ma",
+    "name": "Mike",
+    "allow_password_change": false
+  }
+}
