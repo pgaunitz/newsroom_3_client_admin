@@ -13,6 +13,11 @@ describe("User authenticates", () => {
     });
     cy.visit("/");
   });
+
+  it ("create article form is not visible before authenticated", () => {
+    cy.get("#new-article-form").should("not.exist")
+  })
+
   it("successfully with valid credentials", () => {
     cy.get("#login-form").within(() => {
       cy.get("#email").type("admin@times.ma");
@@ -23,4 +28,8 @@ describe("User authenticates", () => {
     });
     cy.get("#message").should("contain", "Hello admin@times.ma");
   });
+
+  it ("renders create article form when logged in", () => {
+    cy.get("#new-article-form").should("exist")
+  })
 });
