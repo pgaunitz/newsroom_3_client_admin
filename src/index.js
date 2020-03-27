@@ -19,3 +19,7 @@ ReactDOM.render(
 );
 
 serviceWorker.unregister();
+
+if (window.Cypress) {
+  window.store = store
+}
