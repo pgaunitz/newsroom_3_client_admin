@@ -28,25 +28,40 @@ class CreateArticle extends Component {
       this.setState({ message: response.data.error });
     }
   };
+  handleCategoryChange = value => {
+    this.setState({
+      selectedCategory: value
+    });
+  };
 
   render() {
+    let categoryOptions = [
+      { key: "latest_news", text: "Latest News", value: "latest_news" },
+      { key: "Tech", text: "Tech", value: "tech" },
+      { key: "Sports", text: "Sports", value: "sports" },
+      { key: "Politics", text: "Politics", value: "politics" },
+      { key: "Culture", text: "Culture", value: "culture" }
     return (
       <>
-        <form id="new-article-form" onSubmit={this.createArticle}>
-          <input id="title-field" name="title" placeholder="Title" />
-          <input id="snippet-field" name="snippet" placeholder="Snippet" />
-          <textarea id="title-content" name="content" placeholder="Content" />
-          <select id="category-menu" name="category">
-            <option value="latest_news">Latest news</option>
-            <option value="tech">Tech</option>
-            <option value="sports">Sports</option>
-            <option value="politics">Politics</option>
-            <option value="culture">Culture</option>
-          </select>
+        <Form id="new-article-form" onSubmit={this.createArticle}>
+          <Form.Input id="title-field" name="title" placeholder="Title" />
+          <Form.Input id="snippet-field" name="snippet" placeholder="Snippet" />
+          <Form.TextArea id="title-content" name="content" placeholder="Content" />
+          <Form.Select id="category-menu" name="category"
+           id="category"
+           options={categoryOptions}
+           onChange={(event, data) => {
+             this.handleCategoryChange(data.value);
+           }}
+           label="Categories"
+           key="category"
+           name="category"
+           width={6}
+          />
           <button id="create-article" type="submit">
             Create Article
           </button>
-        </form>
+        </Form>
         <p id="response-message">{this.state.message}</p>
       </>
     );
