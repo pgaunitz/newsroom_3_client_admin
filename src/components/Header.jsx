@@ -8,6 +8,7 @@ const Header = () => {
     <div>
       <Segment inverted>
         <Menu inverted pointing secondary>
+          <Menu.Item>Welcome to Mars Times Admin</Menu.Item>
         </Menu>
       </Segment>
     </div>

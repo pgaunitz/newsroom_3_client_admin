@@ -2,6 +2,7 @@ import React from "react";
 import auth from "../modules/auth";
 import { connect } from "react-redux";
 import { AUTHENTICATE } from "../state/actions/actionTypes";
+import { Form, Button}  from "semantic-ui-react"
 
 const LoginForm = props => {
   const onLogin = async e => {
@@ -31,16 +32,17 @@ const LoginForm = props => {
     );
   } else {
     login = (
-      <form id="login-form" onSubmit={onLogin}>
-        <input id="email" name="email" placeholder="Email" />
-        <input
+      <Form id="login-form" onSubmit={onLogin}>
+        <Form.Input id="email" name="email" placeholder="Email" fluid label='Email'/>
+        <Form.Input
           id="password"
           name="password"
           type="password"
           placeholder="Password"
+          fluid label='Password'
         />
-        <button type="submit">Login</button>
-      </form>
+        <Button type="submit">Login</Button>
+      </Form>
     );
   }
   return <div>{login}</div>;
