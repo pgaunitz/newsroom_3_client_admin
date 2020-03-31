@@ -70,7 +70,7 @@ describe("journalist can not create emty article", () => {
   });
 });
 
-describe("journalist can not create emty article", () => {
+describe("journalist can not create empty article", () => {
   beforeEach(() => {
     cy.server();
     cy.route({
