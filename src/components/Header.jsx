@@ -1,9 +1,8 @@
 import React from "react";
 import { Segment, Menu } from "semantic-ui-react";
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 
 const Header = () => {
-
   return (
     <div>
       <Segment inverted>
@@ -14,6 +13,5 @@ const Header = () => {
     </div>
   );
 };
-
 
 export default connect()(Header);

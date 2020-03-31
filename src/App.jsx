@@ -17,7 +17,6 @@ const App = props => {
 const mapStateToProps = state => {
   return {
     authenticated: state.authenticated,
-    createArticle: state.createArticle
   };
 };
 

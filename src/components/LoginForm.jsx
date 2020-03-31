@@ -2,7 +2,7 @@ import React from "react";
 import auth from "../modules/auth";
 import { connect } from "react-redux";
 import { AUTHENTICATE } from "../state/actions/actionTypes";
-import { Form, Button}  from "semantic-ui-react"
+import { Form, Button } from "semantic-ui-react";
 
 const LoginForm = props => {
   const onLogin = async e => {
@@ -16,7 +16,9 @@ const LoginForm = props => {
 
       props.dispatch({
         type: AUTHENTICATE,
-        payload: { currentUser: { email: response.data.email, role: response.data.role} }
+        payload: {
+          currentUser: { email: response.data.email, role: response.data.role }
+        }
       });
     } catch (error) {
       console.log(error);
@@ -33,13 +35,20 @@ const LoginForm = props => {
   } else {
     login = (
       <Form id="login-form" onSubmit={onLogin}>
-        <Form.Input id="email" name="email" placeholder="Email" fluid label='Email'/>
+        <Form.Input
+          id="email"
+          name="email"
+          placeholder="Email"
+          fluid
+          label="Email"
+        />
         <Form.Input
           id="password"
           name="password"
           type="password"
           placeholder="Password"
-          fluid label='Password'
+          fluid
+          label="Password"
         />
         <Button type="submit">Login</Button>
       </Form>

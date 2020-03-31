@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 
 class CreateArticle extends Component {
   state = {
-    message: "",
+    message: ""
   };
   createArticle = async event => {
     event.preventDefault();
