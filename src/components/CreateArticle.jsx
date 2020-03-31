@@ -1,14 +1,23 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Checkbox } from "semantic-ui-react";
 
 class CreateArticle extends Component {
   state = {
     message: ""
   };
-
   createArticle = async event => {
     event.preventDefault();
-    let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"))
+    let premium;
+    if (event.target.premium.checked === true) {
+      premium = true;
+    } else {
+      premium = false;
+    }
+
+    debugger;
+
+    let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
     let response = await axios.post(
       "/articles",
       {
@@ -16,7 +25,8 @@ class CreateArticle extends Component {
           title: event.target.title.value,
           snippet: event.target.snippet.value,
           content: event.target.content.value,
-          category: event.target.category.value
+          category: event.target.category.value,
+          premium: premium
         }
       },
       { headers: headers }
@@ -36,6 +46,7 @@ class CreateArticle extends Component {
           <input id="title-field" name="title" placeholder="Title" />
           <input id="snippet-field" name="snippet" placeholder="Snippet" />
           <textarea id="title-content" name="content" placeholder="Content" />
+          <Checkbox label="Premium Article" name="premium" id="premium" />
           <select id="category-menu" name="category">
             <option value="latest_news">Latest news</option>
             <option value="tech">Tech</option>

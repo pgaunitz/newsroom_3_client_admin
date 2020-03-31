@@ -25,6 +25,7 @@ describe("journalist can creates article", () => {
       cy.get("#snippet-field").type("this is a snippet");
       cy.get("#title-content").type("this is a content");
       cy.get("#category-menu").select("Tech");
+      cy.get('#premium').check({force: true});
       cy.get("#create-article").click();
     });
     cy.get("#response-message").should("contain", "Your article was saved");

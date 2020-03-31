@@ -5,6 +5,7 @@ import * as serviceWorker from "./serviceWorker";
 import axios from "axios";
 import { Provider } from "react-redux";
 import configureStore from "./state/store/configureStore";
+import "semantic-ui-css/semantic.min.css";
 
 axios.defaults.baseURL = "https://newsroom3api.herokuapp.com/api/v1";
 
