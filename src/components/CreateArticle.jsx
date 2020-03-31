@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Checkbox, Button, Form } from "semantic-ui-react";
+import {connect} from 'react-redux'
 
 class CreateArticle extends Component {
   state = {
-    message: ""
+    message: "",
   };
   createArticle = async event => {
     event.preventDefault();
@@ -84,4 +85,5 @@ class CreateArticle extends Component {
   }
 }
 
-export default CreateArticle;
+
+export default connect()(CreateArticle);

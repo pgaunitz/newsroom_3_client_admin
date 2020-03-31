@@ -1,1 +1,2 @@
 export const AUTHENTICATE = 'AUTHENTICATE'
+export const CREATE_ARTICLE = 'CREATE_ARTICLE'

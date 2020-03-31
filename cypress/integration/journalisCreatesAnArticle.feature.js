@@ -12,7 +12,7 @@ describe("journalist can creates article", () => {
         window.store.dispatch(
           {
             type: "AUTHENTICATE",
-            payload: { authenticated: true, userEmail: 'admin@times.ma' }
+            payload: { authenticated: true, currentUser: 'admin@times.ma', role: 'journalist' }
           }
         )
       })
@@ -46,12 +46,14 @@ describe("journalist can not create emty article", () => {
     cy.visit("/");
     cy.window()
       .then(window => {
-        window.store.dispatch(
-          {
-            type: "AUTHENTICATE",
-            payload: { authenticated: true, userEmail: 'admin@times.ma' }
+        window.store.dispatch({
+          type: "AUTHENTICATE",
+          payload: {
+            authenticated: true,
+            currentUser: "admin@times.ma",
+            role: "journalist"
           }
-        )
+        });
       })
   });
 
@@ -80,12 +82,14 @@ describe("journalist can not create emty article", () => {
     cy.visit("/");
     cy.window()
       .then(window => {
-        window.store.dispatch(
-          {
-            type: "AUTHENTICATE",
-            payload: { authenticated: true, userEmail: 'user@mail.com', role: "reg_user" }
+        window.store.dispatch({
+          type: "AUTHENTICATE",
+          payload: {
+            authenticated: true,
+            currentUser: "admin@times.ma",
+            role: "journalist"
           }
-        )
+        });
       })
   });
 

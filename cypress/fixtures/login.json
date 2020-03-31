@@ -4,7 +4,7 @@
     "email": "admin@times.ma",
     "provider": "email",
     "uid": "admin@times.ma",
-    "name": "Mike",
+    "role": "journalist",
     "allow_password_change": false
   }
 }

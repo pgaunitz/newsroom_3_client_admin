@@ -15,7 +15,7 @@ const LoginForm = props => {
 
       props.dispatch({
         type: AUTHENTICATE,
-        payload: { authenticated: true, userEmail: response.data.email }
+        payload: { currentUser: { email: response.data.email, role: response.data.role} }
       });
     } catch (error) {
       console.log(error);
@@ -26,7 +26,7 @@ const LoginForm = props => {
   if (props.authenticated) {
     login = (
       <>
-        <p id="message">Hello {props.userEmail}</p>
+        <h2 id="message">Hello {props.currentUser.email}</h2>
       </>
     );
   } else {
@@ -48,7 +48,7 @@ const LoginForm = props => {
 
 const mapStateToProps = state => {
   return {
-    userEmail: state.userEmail,
+    currentUser: state.currentUser,
     authenticated: state.authenticated
   };
 };
