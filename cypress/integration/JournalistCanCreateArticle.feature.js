@@ -61,3 +61,35 @@ describe("journalist can not create emty article", () => {
     cy.get("#response-message").should("contain", "Title can't be blank");
   });
 });
+
+describe("journalist can not create emty article", () => {
+  beforeEach(() => {
+    cy.server();
+    cy.route({
+      method: "POST",
+      url: "https://newsroom3api.herokuapp.com/api/v1/articles",
+      response: {message: "You are not authorized to create an article"}
+    });
+    cy.visit("/");
+    cy.window()
+      .then(window => {
+        window.store.dispatch(
+          {
+            type: "AUTHENTICATE",
+            payload: { authenticated: true, userEmail: 'user@mail.com', role: "reg_user" }
+          }
+        )
+      })
+  });
+
+  it("can not create article without title", () => {
+    cy.get("#new-article-form").within(() => {
+      cy.get("#title-field").type("this is a title");
+      cy.get("#snippet-field").type("this is a snippet");
+      cy.get("#title-content").type("this is a content");
+      cy.get("#category-menu").select("Tech");
+      cy.get("#create-article").click();
+    });
+    cy.get("#response-message").should("contain", "You are not authorized to create an article");
+  });
+});

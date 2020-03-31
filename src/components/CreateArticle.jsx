@@ -8,6 +8,7 @@ class CreateArticle extends Component {
 
   createArticle = async event => {
     event.preventDefault();
+    let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"))
     let response = await axios.post(
       "/articles",
       {
@@ -18,7 +19,7 @@ class CreateArticle extends Component {
           category: event.target.category.value
         }
       },
-      { headers: { "Content-Type": "application/json" } }
+      { headers: headers }
     );
 
     if (response.status === 200) {
