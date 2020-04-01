@@ -24,7 +24,7 @@ describe("User authenticates", () => {
         .click();
     });
     cy.get("#message").should("contain", "Hello admin@times.ma");
-    cy.get("#new-article-form").should("exist")
+    cy.get("#new-article-form").should("exist");
   });
 });
 describe("Journalist cannot create article with invalid credentials", () => {

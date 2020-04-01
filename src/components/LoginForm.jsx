@@ -2,6 +2,7 @@ import React from "react";
 import auth from "../modules/auth";
 import { connect } from "react-redux";
 import { AUTHENTICATE } from "../state/actions/actionTypes";
+import { Form, Button } from "semantic-ui-react";
 
 const LoginForm = props => {
   const onLogin = async e => {
@@ -15,7 +16,9 @@ const LoginForm = props => {
 
       props.dispatch({
         type: AUTHENTICATE,
-        payload: { authenticated: true, userEmail: response.data.email }
+        payload: {
+          currentUser: { email: response.data.email, role: response.data.role }
+        }
       });
     } catch (error) {
       console.log(error);
@@ -26,21 +29,29 @@ const LoginForm = props => {
   if (props.authenticated) {
     login = (
       <>
-        <p id="message">Hello {props.userEmail}</p>
+        <h2 id="message">Hello {props.currentUser.email}</h2>
       </>
     );
   } else {
     login = (
-      <form id="login-form" onSubmit={onLogin}>
-        <input id="email" name="email" placeholder="Email" />
-        <input
+      <Form id="login-form" onSubmit={onLogin}>
+        <Form.Input
+          id="email"
+          name="email"
+          placeholder="Email"
+          fluid
+          label="Email"
+        />
+        <Form.Input
           id="password"
           name="password"
           type="password"
           placeholder="Password"
+          fluid
+          label="Password"
         />
-        <button type="submit">Login</button>
-      </form>
+        <Button type="submit">Login</Button>
+      </Form>
     );
   }
   return <div>{login}</div>;
@@ -48,7 +59,7 @@ const LoginForm = props => {
 
 const mapStateToProps = state => {
   return {
-    userEmail: state.userEmail,
+    currentUser: state.currentUser,
     authenticated: state.authenticated
   };
 };

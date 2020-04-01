@@ -6,7 +6,8 @@ const rootReducer = (state = initialState, action) => {
     case actionTypes.AUTHENTICATE:
       return {
         ...state,
-        ...action.payload
+        authenticated: true,
+        currentUser: action.payload.currentUser
       };
     default:
       return state;
