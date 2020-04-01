@@ -75,21 +75,20 @@ class CreateArticle extends Component {
           <Form.Select
             id="category-menu"
             name="category"
-            id="category"
             options={categoryOptions}
             onChange={(event, data) => {
               this.handleCategoryChange(data.value);
             }}
             label="Categories"
             key="category"
-            name="category"
             width={6}
           />
           <Checkbox label="Premium Article" name="premium" id="premium" />
+          
           <ImageUploading onChange={this.onImageDropHandler}>
             {({ imageList, onImageUpload }) => (
-              <div className="upload_image-wrapper">
-                <Button id="image-uploader" onclick={onImageUpload}>
+              <div className="upload__image-wrapper">
+                <Button id="image-uploader" onClick={onImageUpload}>
                   Upload Images
                 </Button>
                 &nbsp;
