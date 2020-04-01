@@ -9185,6 +9185,11 @@ react-error-overlay@^6.0.6:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.6.tgz#ac4d9dc4c1b5c536c2c312bf66aa2b09bfa384e2"
   integrity sha512-Yzpno3enVzSrSCnnljmr4b/2KUQSMZaPuqmS26t9k4nW7uwJk6STWmH9heNjPuvqUTO3jOSPkHoKgO4+Dw7uIw==
 
+react-images-uploading@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-images-uploading/-/react-images-uploading-2.0.0.tgz#1c54bcc849e7c999f03c690be95f2800b2708dc7"
+  integrity sha512-/NahyFv5hsZPbn5U8Hx6Tihy0jgPVgjrDea1MkKIZI2Xmf26pWzOkaaI5whhtdyGK28VoXsEyKySsTo8QdkkeQ==
+
 react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6, react-is@^16.9.0:
   version "16.13.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.0.tgz#0f37c3613c34fe6b37cd7f763a0d6293ab15c527"

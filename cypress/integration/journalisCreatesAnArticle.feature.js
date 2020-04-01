@@ -100,6 +100,7 @@ describe("journalist can not create empty article", () => {
       cy.get('div[role="option"]')
         .contains("Tech")
         .click();
+        cy.get('#image-uploader').click()
       cy.get("#create-article").click();
     });
     cy.get("#response-message").should(
