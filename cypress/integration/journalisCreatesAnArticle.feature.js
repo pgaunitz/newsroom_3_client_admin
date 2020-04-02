@@ -20,6 +20,7 @@ describe("journalist can creates article", () => {
   });
 
   it("authenticated user succefully creates first article", () => {
+    const imageFileName = "img.jpg";
     cy.get("#new-article-form").within(() => {
       cy.get("#title-field").type("this is a title");
       cy.get("#snippet-field").type("this is a snippet");
@@ -29,6 +30,7 @@ describe("journalist can creates article", () => {
         .contains("Tech")
         .click();
       cy.get("#premium").check({ force: true });
+      cy.file_upload('img.jpg', "#image-uploader", 'image/jpg');
       cy.get("#create-article").click();
     });
     cy.get("#response-message").should("contain", "Your article was saved");
@@ -70,7 +72,7 @@ describe("journalist can not create emty article", () => {
   });
 });
 
-describe("journalist can not create empty article", () => {
+describe("user who is not a journalist", () => {
   beforeEach(() => {
     cy.server();
     cy.route({
@@ -84,8 +86,8 @@ describe("journalist can not create empty article", () => {
         type: "AUTHENTICATE",
         payload: {
           authenticated: true,
-          currentUser: "admin@times.ma",
-          role: "journalist"
+          currentUser: "user@mail.com",
+          role: "reg_user"
         }
       });
     });
@@ -100,6 +102,7 @@ describe("journalist can not create empty article", () => {
       cy.get('div[role="option"]')
         .contains("Tech")
         .click();
+        cy.get('#image-uploader').click()
       cy.get("#create-article").click();
     });
     cy.get("#response-message").should(
