@@ -84,11 +84,15 @@ class CreateArticle extends Component {
             width={6}
           />
           <Checkbox label="Premium Article" name="premium" id="premium" />
-          
+
           <ImageUploading onChange={this.onImageDropHandler}>
             {({ imageList, onImageUpload }) => (
               <div className="upload__image-wrapper">
-                <Button id="image-uploader" onClick={onImageUpload}>
+                <Button
+                  type="button"
+                  id="image-uploader"
+                  onClick={onImageUpload}
+                >
                   Upload Images
                 </Button>
                 &nbsp;
@@ -97,6 +101,7 @@ class CreateArticle extends Component {
                     <img src={image.dataURL} alt="" width="100" />
                     <div className="image-item__btn-wrapper">
                       <Button
+                        type="button"
                         size="tiny"
                         id="image-update"
                         onClick={() => {
@@ -106,6 +111,7 @@ class CreateArticle extends Component {
                         Update
                       </Button>
                       <Button
+                        type="button"
                         id="image-remove"
                         size="tiny"
                         onClick={image.onRemove}
