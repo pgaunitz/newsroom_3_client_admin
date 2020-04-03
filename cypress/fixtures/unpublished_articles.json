@@ -1,0 +1,31 @@
+{
+  "articles": [
+    {
+      "id": 1,
+      "title": "Zero infected on Mars",
+      "snippet": "Mars becomes more and more desirable as Earth is struggling with Corona Virus",
+      "content": "Scientist say that we can live there in the nearest future. Spaceships are now being prepared to ship shitloads of people.",
+      "category": "latest_news",
+      "premium": true,
+      "published": false
+    },
+    {
+      "id": 2,
+      "title": "Lau new president",
+      "snippet": "Mars wants Lau on the front line",
+      "content": "And this might be the end before the biginning for Mars.",
+      "category": "politics",
+      "premium": false,
+      "published": false
+    },
+    {
+      "id": 3,
+      "title": "This is a smashing title",
+      "snippet": "And this is an awesome snippet",
+      "content": "And this is some real fancy content about nothing. Because this is just ofr show so this fake article looks real.",
+      "category": "sports",
+      "premium": false,
+      "published": false
+    }
+  ]
+}
