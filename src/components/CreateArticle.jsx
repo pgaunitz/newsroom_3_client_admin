@@ -20,7 +20,7 @@ class CreateArticle extends Component {
 
     let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
     let response = await axios.post(
-      "/articles",
+      "/admin",
       {
         article: {
           title: event.target.title.value,

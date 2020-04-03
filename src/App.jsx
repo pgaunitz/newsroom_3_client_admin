@@ -11,8 +11,10 @@ import { bindActionCreators } from "redux";
 
 const App = props => {
   props.fetchArticles()
+  debugger
+  let userRole = props.currentUser.role
   let showContent =
-    props.currentUser.role === "journalist" ? (
+    userRole === "journalist" ? (
       <CreateArticle />
     ) : (
       <UnpublishedArticles />
