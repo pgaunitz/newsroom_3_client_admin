@@ -11,7 +11,6 @@ import { bindActionCreators } from "redux";
 
 const App = props => {
   props.fetchArticles()
-  debugger
   let userRole = props.currentUser.role
   let showContent =
     userRole === "journalist" ? (
