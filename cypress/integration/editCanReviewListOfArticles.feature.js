@@ -4,7 +4,7 @@ describe("successfully displays", () => {
     cy.route({
       method: "GET",
       url: "https://newsroom3api.herokuapp.com/api/v1/admin",
-      response: "fixture:articles.json"
+      response: "fixture:unpublished_articles.json"
     });
     cy.visit("/");
     cy.window().then(window => {
@@ -16,7 +16,7 @@ describe("successfully displays", () => {
   });
 
   it("first article", () => {
-    cy.get("#title").should("contain", "Unpublished Articles");
+    cy.get("#main-title").should("contain", "Unpublished Articles");
     cy.get("#article-1").within(() => {
       cy.get("#title").should("contain", "Zero infected on Mars");
       cy.get("img").should("exist");

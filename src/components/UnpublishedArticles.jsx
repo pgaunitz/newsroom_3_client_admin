@@ -5,12 +5,15 @@ const DisplayArticles = props => {
   
   let articleDisplay = props.articles.map(article => {
     return (
+      <>
+      <h1 id="main-title">Unpublished Articles</h1>
       <div id={`article-${article.id}`} key={article.id}>
         <img src={article.image} alt={`${article.title}-image`} />
         <h4 id="title">{article.title}</h4>
         <h5 id="snippet">{article.snippet}</h5>
         <p id="content">{article.content}</p>
       </div>
+      </>
     );
   });
   return <div id="article-list">{articleDisplay}</div>;
