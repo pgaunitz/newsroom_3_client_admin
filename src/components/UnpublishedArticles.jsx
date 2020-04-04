@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Button, Icon, Modal } from "semantic-ui-react";
 import axios from "axios";
 import { useState } from "react";
+import { SHOW_PUBLISH_MESSAGE } from "../state/actions/actionTypes";
 
 const DisplayArticles = (props) => {
   const [message, setMessage] = useState("");
@@ -25,7 +26,7 @@ const DisplayArticles = (props) => {
       setMessage(response.data.error);
     }
   };
-  let closeModal
+  let closeModal;
 
   let articleDisplay = props.articles.map((article) => {
     return (
@@ -41,7 +42,11 @@ const DisplayArticles = (props) => {
             size="large"
             id="publish-button"
             onClick={() => {
-              onPublish(article.id);
+              onPublish(article.id) &&
+                props.dispatch({
+                  type: SHOW_PUBLISH_MESSAGE,
+                  payload: { showMessage: true },
+                });
             }}
           >
             <Button.Content visible>Publish</Button.Content>
@@ -49,17 +54,28 @@ const DisplayArticles = (props) => {
               <Icon name="paper plane" />
             </Button.Content>
           </Button>
-          <Modal open={message != ""}>
-            <h2 id="message">{message}</h2>
-            <Button type='close'><i class="thumbs up icon"/></Button>
-          </Modal>
+          {props.showMessage && (
+            <Modal open={message != ""}>
+              <h2 id="message">{message}</h2>
+              <Button
+                type="close"
+                onClick={() =>
+                  props.dispatch({
+                    type: SHOW_PUBLISH_MESSAGE,
+                    payload: { showMessage: false },
+                  })
+                }
+              >
+                <i class="thumbs up icon" />
+              </Button>
+            </Modal>
+          )}
         </div>
       </>
     );
   });
   return (
     <>
-      
       <div id="article-list">{articleDisplay}</div>
     </>
   );
@@ -68,6 +84,7 @@ const DisplayArticles = (props) => {
 const mapStateToProps = (state) => {
   return {
     articles: state.articles,
+    showMessage: state.showMessage,
   };
 };
 
