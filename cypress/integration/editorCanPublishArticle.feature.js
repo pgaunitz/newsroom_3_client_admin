@@ -34,6 +34,6 @@ describe('editor can successfully publish an article', () => {
       cy.get("#publish-button").click();
       
     });
-    cy.get("#message").should("contain", "Article is published");
+    cy.get("body").should("contain", "Article is published");
   });
 })
