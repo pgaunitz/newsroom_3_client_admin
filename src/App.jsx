@@ -7,8 +7,6 @@ import UnpublishedArticles from "./components/UnpublishedArticles";
 import { fetchArticles } from "./state/actions/articleAction"
 import { bindActionCreators } from "redux";
 
-
-
 const App = props => {
   props.fetchArticles()
   let userRole = props.currentUser.role

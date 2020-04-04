@@ -15,5 +15,4 @@ const dispatchArticleAction = json => {
   return { type: GET_ARTICLE_DATA, payload: json };
 };
 
-
 export { fetchArticles };
