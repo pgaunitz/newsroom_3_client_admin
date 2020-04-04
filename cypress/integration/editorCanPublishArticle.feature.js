@@ -32,7 +32,8 @@ describe('editor can successfully publish an article', () => {
         "Scientist say that we can live there in the nearest future. Spaceships are now being prepared to ship shitloads of people."
       );
       cy.get("#publish-button").click();
-      cy.get("#message").should("contain", "Article is published");
+      
     });
+    cy.get("#message").should("contain", "Article is published");
   });
 })
