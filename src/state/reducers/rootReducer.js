@@ -9,9 +9,14 @@ const rootReducer = (state = initialState, action) => {
         authenticated: true,
         currentUser: action.payload.currentUser
       };
+    case actionTypes.GET_ARTICLE_DATA:
+      return {
+        ...state,
+        ...action.payload
+      };
     default:
       return state;
   }
 };
 
-export default rootReducer
+export default rootReducer;

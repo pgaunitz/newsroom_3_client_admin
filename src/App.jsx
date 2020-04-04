@@ -3,13 +3,25 @@ import CreateArticle from "./components/CreateArticle";
 import LoginForm from "./components/LoginForm";
 import { connect } from "react-redux";
 import Header from "./components/Header";
+import UnpublishedArticles from "./components/UnpublishedArticles";
+import { fetchArticles } from "./state/actions/articleAction"
+import { bindActionCreators } from "redux";
 
 const App = props => {
+  props.fetchArticles()
+  let userRole = props.currentUser.role
+  let showContent =
+    userRole === "journalist" ? (
+      <CreateArticle />
+    ) : (
+      <UnpublishedArticles />
+    );
   return (
     <div>
       <Header/>
+
       <LoginForm />
-      {props.authenticated && <CreateArticle />}
+      {showContent}
     </div>
   );
 };
@@ -17,7 +29,14 @@ const App = props => {
 const mapStateToProps = state => {
   return {
     authenticated: state.authenticated,
+    currentUser: state.currentUser
   };
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchArticles: bindActionCreators(fetchArticles, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
