@@ -5,13 +5,13 @@ import ImageUploading from "react-images-uploading";
 import { connect } from "react-redux";
 import { SHOW_PUBLISH_MESSAGE } from "../state/actions/actionTypes";
 
-const CreateArticle = (props) => {
+const CreateArticle = props => {
   const [
     categoryOptions,
     handleCategoryChange,
     message,
     onImageDropHandler,
-    createArticle,
+    createArticle
   ] = useCreateArticle();
 
   return (
@@ -40,15 +40,23 @@ const CreateArticle = (props) => {
         <ImageUploading onChange={onImageDropHandler}>
           {({ imageList, onImageUpload }) => (
             <div className="upload__image-wrapper">
-              <Button type="button" id="image-uploader" onClick={onImageUpload}>
+              <Button
+                inverted
+                color="blue"
+                type="button"
+                id="image-uploader"
+                onClick={onImageUpload}
+              >
                 Upload Images
               </Button>
               &nbsp;
-              {imageList.map((image) => (
+              {imageList.map(image => (
                 <div key={image.key} className="image-item">
                   <img src={image.dataURL} alt="" width="100" />
                   <div className="image-item__btn-wrapper">
                     <Button
+                      inverted
+                      color="blue"
                       type="button"
                       size="tiny"
                       id="image-update"
@@ -59,6 +67,8 @@ const CreateArticle = (props) => {
                       Update
                     </Button>
                     <Button
+                      inverted
+                      color="blue"
                       type="button"
                       id="image-remove"
                       size="tiny"
@@ -73,12 +83,14 @@ const CreateArticle = (props) => {
           )}
         </ImageUploading>
         <Button
+          inverted
+          color="blue"
           id="create-article"
           type="submit"
           onClick={() =>
             props.dispatch({
               type: SHOW_PUBLISH_MESSAGE,
-              payload: { showMessage: true },
+              payload: { showMessage: true }
             })
           }
         >
@@ -89,11 +101,13 @@ const CreateArticle = (props) => {
         <Modal open={message !== ""}>
           <h2 id="response-message">{message}</h2>
           <Button
+            inverted
+            color="blue"
             type="close"
             onClick={() =>
               props.dispatch({
                 type: SHOW_PUBLISH_MESSAGE,
-                payload: { showMessage: false },
+                payload: { showMessage: false }
               })
             }
           >
@@ -105,9 +119,9 @@ const CreateArticle = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    showMessage: state.showMessage,
+    showMessage: state.showMessage
   };
 };
 

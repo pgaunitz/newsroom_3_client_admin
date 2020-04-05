@@ -1,37 +1,3 @@
-body {
-    background-image: url(./assets/mars_times.png) !important;
-}
-
-#submit {
-    background-color: darkblue;
-    font-size: medium;
-}
-
-#image-uploader {
-    background-color: darkblue; 
-    font-size: medium;
-}
-
-#image-update {
-    background-color: darkblue; 
-    font-size: medium;
-}
-
-#image-remove {
-    background-color: darkblue; 
-    font-size: medium;
-}
-
-#create-article {
-    background-color: darkblue; 
-    font-size: medium;
-}
-
-#publish-button {
-    background-color: darkblue; 
-    font-size: medium;
-}
-
 #background {
     position: initial;
     width: 30%;
