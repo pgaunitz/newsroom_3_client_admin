@@ -19,8 +19,9 @@ const App = props => {
   return (
     <div>
       <Header/>
+
       <LoginForm />
-      {showContent}
+      {props.authenticated && showContent}
     </div>
   );
 };
