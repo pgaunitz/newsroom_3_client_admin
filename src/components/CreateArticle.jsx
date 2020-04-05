@@ -1,65 +1,19 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
+import useCreateArticle from "../helpers/createArticleHook";
 import { Checkbox, Button, Form, Modal } from "semantic-ui-react";
 import ImageUploading from "react-images-uploading";
 import { connect } from "react-redux";
 import { SHOW_PUBLISH_MESSAGE } from "../state/actions/actionTypes";
 
+const CreateArticle = (props) => {
+  const [
+    categoryOptions,
+    handleCategoryChange,
+    message,
+    onImageDropHandler,
+    createArticle,
+  ] = useCreateArticle();
 
-
-const CreateArticle = props => {
-  const [message, setMessage] = useState("");
-  const [selectedCategory, setCategory] = useState("");
-  const [image, setImage] = useState([]);
-  const createArticle = async (event) => {
-    
-    event.preventDefault();
-    let selectPremium =
-      event.target.premium.checked === true
-        ? true
-        : false
-        debugger
-    let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
-    let response = await axios.post(
-      "/admin",
-      {
-        article: {
-          title: event.target.title.value,
-          snippet: event.target.snippet.value,
-          content: event.target.content.value,
-          category: selectedCategory,
-          premium: selectPremium,
-          image: image,
-        },
-      },
-      { headers: headers }
-    );
-    
-    if (response.status === 200) {
-      setMessage(response.data.message)
-      document.getElementById("new-article-form").reset()
-    } else {
-      setMessage(response.data.message);
-    }
-  };
-
-  const handleCategoryChange = (value) => {
-    setCategory(value);
-  };
-
-  const onImageDropHandler = (imageList) => {
-    if (imageList.length > 0) {
-      setImage(imageList[0].dataURL);
-    }
-  };
-
-  let categoryOptions = [
-    { key: "latest_news", text: "Latest News", value: "latest_news" },
-    { key: "Tech", text: "Tech", value: "tech" },
-    { key: "Sports", text: "Sports", value: "sports" },
-    { key: "Politics", text: "Politics", value: "politics" },
-    { key: "Culture", text: "Culture", value: "culture" },
-  ];
   return (
     <>
       <Form id="new-article-form" onSubmit={createArticle}>
@@ -118,43 +72,43 @@ const CreateArticle = props => {
             </div>
           )}
         </ImageUploading>
-        <Button id="create-article" type="submit"
+        <Button
+          id="create-article"
+          type="submit"
           onClick={() =>
             props.dispatch({
               type: SHOW_PUBLISH_MESSAGE,
               payload: { showMessage: true },
             })
-        }
+          }
         >
           Create Article
         </Button>
-    </Form>
-    {props.showMessage && (
-    <Modal open={message != ""}>
-      <h2 id="response-message">{message}</h2>
-      <Button
-        type="close"
-        onClick={() =>
-          props.dispatch({
-            type: SHOW_PUBLISH_MESSAGE,
-            payload: { showMessage: false },
-          })
-        }
-      >
-        <i class="x icon" />
-      </Button>
-    </Modal>
-    )}
+      </Form>
+      {props.showMessage && (
+        <Modal open={message !== ""}>
+          <h2 id="response-message">{message}</h2>
+          <Button
+            type="close"
+            onClick={() =>
+              props.dispatch({
+                type: SHOW_PUBLISH_MESSAGE,
+                payload: { showMessage: false },
+              })
+            }
+          >
+            <i class="x icon" />
+          </Button>
+        </Modal>
+      )}
     </>
   );
 };
 
-const mapStateToProps = state =>{
+const mapStateToProps = (state) => {
   return {
-    showMessage: state.showMessage
-  }
-}
+    showMessage: state.showMessage,
+  };
+};
 
 export default connect(mapStateToProps)(CreateArticle);
-
-

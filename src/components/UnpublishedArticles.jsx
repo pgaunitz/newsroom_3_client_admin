@@ -1,30 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Button, Icon, Modal } from "semantic-ui-react";
-import axios from "axios";
-import { useState } from "react";
+import useUnpublishedArticles from "../helpers/unpublishedArticlesHook";
 import { SHOW_PUBLISH_MESSAGE } from "../state/actions/actionTypes";
 
-const DisplayArticles = (props) => {
-  const [message, setMessage] = useState("");
-
-  const onPublish = async (articleID) => {
-    let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
-    let response = await axios.put(
-      `/admin/${articleID}`,
-      {
-        article: {
-          published: true,
-        },
-      },
-      { headers: headers }
-    );
-    if (response.status === 200) {
-      setMessage(response.data.message);
-    } else {
-      setMessage(response.data.error);
-    }
-  };
+const UnpublishedArticles = (props) => {
+  const [onPublish, message] = useUnpublishedArticles();
 
   let articleDisplay = props.articles.map((article) => {
     return (
@@ -86,4 +67,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(DisplayArticles);
+export default connect(mapStateToProps)(UnpublishedArticles);
