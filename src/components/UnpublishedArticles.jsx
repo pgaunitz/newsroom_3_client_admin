@@ -66,7 +66,7 @@ const DisplayArticles = (props) => {
                   })
                 }
               >
-                <i class="thumbs up icon" />
+                <i class="x icon" />
               </Button>
             </Modal>
           )}
