@@ -25,7 +25,6 @@ const DisplayArticles = (props) => {
       setMessage(response.data.error);
     }
   };
-  let closeModal;
 
   let articleDisplay = props.articles.map((article) => {
     return (
