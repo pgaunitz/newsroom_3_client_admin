@@ -10,7 +10,6 @@ const DisplayArticles = (props) => {
 
   const onPublish = async (articleID) => {
     let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
-    debugger;
     let response = await axios.put(
       `/admin/${articleID}`,
       {
@@ -31,7 +30,6 @@ const DisplayArticles = (props) => {
   let articleDisplay = props.articles.map((article) => {
     return (
       <>
-        <h1 id="main-title">Unpublished Articles</h1>
         <div id={`article-${article.id}`} key={article.id}>
           <img src={article.image} alt={`${article.title}-image`} />
           <h4 id="title">{article.title}</h4>
@@ -76,6 +74,7 @@ const DisplayArticles = (props) => {
   });
   return (
     <>
+      <h1 id="main-title">Unpublished Articles</h1>
       <div id="article-list">{articleDisplay}</div>
     </>
   );
