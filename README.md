@@ -2,8 +2,8 @@
 [Emma-Maria Thalen](https://github.com/emtalen)  
 [Philip Gaunitz](https://github.com/pgauntiz)  
 [Carlos Delgado](https://github.com/Carltesio)  
-[Janko Radakovic](https://github.com/MadFarmer101)
-[Lautaro Parra](https://github.com/MadFarmer101) 
+[Janko Radakovic](https://github.com/MadFarmer101)  
+[Lautaro Parra](https://github.com/dernathul) 
 
 ## Built with
 **Front End:** React v.16.12.0 | CSS  
