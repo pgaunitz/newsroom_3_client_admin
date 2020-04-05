@@ -50,7 +50,8 @@ const LoginForm = (props) => {
           fluid
           label="Password"
         />
-        <Button type="submit">Login</Button>
+        <Button class="ui secondary button" 
+        type="submit">Login</Button>
       </Form>
     );
   }

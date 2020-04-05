@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import UnpublishedArticles from "./components/UnpublishedArticles";
 import { fetchArticles } from "./state/actions/articleAction";
 import { bindActionCreators } from "redux";
+import mars_times from "./assets/mars_times.png"
 
 const App = (props) => {
   props.fetchArticles();
@@ -15,9 +16,10 @@ const App = (props) => {
   return (
     <div>
       <Header />
-
+<img id="background" src={mars_times} alt="background" />
       <LoginForm />
       {props.authenticated && showContent}
+      
     </div>
   );
 };
