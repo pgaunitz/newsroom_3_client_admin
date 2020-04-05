@@ -4,21 +4,17 @@ import LoginForm from "./components/LoginForm";
 import { connect } from "react-redux";
 import Header from "./components/Header";
 import UnpublishedArticles from "./components/UnpublishedArticles";
-import { fetchArticles } from "./state/actions/articleAction"
+import { fetchArticles } from "./state/actions/articleAction";
 import { bindActionCreators } from "redux";
 
-const App = props => {
-  props.fetchArticles()
-  let userRole = props.currentUser.role
+const App = (props) => {
+  props.fetchArticles();
+  let userRole = props.currentUser.role;
   let showContent =
-    userRole === "journalist" ? (
-      <CreateArticle />
-    ) : (
-      <UnpublishedArticles />
-    );
+    userRole === "journalist" ? <CreateArticle /> : <UnpublishedArticles />;
   return (
     <div>
-      <Header/>
+      <Header />
 
       <LoginForm />
       {props.authenticated && showContent}
@@ -26,17 +22,17 @@ const App = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     authenticated: state.authenticated,
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    fetchArticles: bindActionCreators(fetchArticles, dispatch)
-  }
-}
+    fetchArticles: bindActionCreators(fetchArticles, dispatch),
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
