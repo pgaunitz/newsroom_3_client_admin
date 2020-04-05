@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Checkbox, Button, Form } from "semantic-ui-react";
+import { Checkbox, Button, Form, Modal } from "semantic-ui-react";
 import ImageUploading from "react-images-uploading";
+import { connect } from "react-redux";
+import { SHOW_PUBLISH_MESSAGE } from "../state/actions/actionTypes";
 
 
-const CreateArticle = () => {
+
+const CreateArticle = props => {
   const [message, setMessage] = useState("");
   const [selectedCategory, setCategory] = useState("");
   const [image, setImage] = useState([]);
   const createArticle = async (event) => {
-    debugger
+    
     event.preventDefault();
     let selectPremium =
       event.target.premium.checked === true
         ? true
         : false
-
+        debugger
     let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
     let response = await axios.post(
       "/admin",
@@ -31,14 +34,15 @@ const CreateArticle = () => {
       },
       { headers: headers }
     );
-
+    
     if (response.status === 200) {
-      setMessage(response.data.message);
+      setMessage(response.data.message)
+      document.getElementById("new-article-form").reset()
     } else {
-      setMessage(response.data.error);
+      setMessage(response.data.message);
     }
   };
-  
+
   const handleCategoryChange = (value) => {
     setCategory(value);
   };
@@ -114,15 +118,43 @@ const CreateArticle = () => {
             </div>
           )}
         </ImageUploading>
-        <Button id="create-article" type="submit">
+        <Button id="create-article" type="submit"
+          onClick={() =>
+            props.dispatch({
+              type: SHOW_PUBLISH_MESSAGE,
+              payload: { showMessage: true },
+            })
+        }
+        >
           Create Article
         </Button>
-      </Form>
-      <p id="response-message">{message}</p>
+    </Form>
+    {props.showMessage && (
+    <Modal open={message != ""}>
+      <h2 id="response-message">{message}</h2>
+      <Button
+        type="close"
+        onClick={() =>
+          props.dispatch({
+            type: SHOW_PUBLISH_MESSAGE,
+            payload: { showMessage: false },
+          })
+        }
+      >
+        <i class="x icon" />
+      </Button>
+    </Modal>
+    )}
     </>
   );
 };
 
-export default CreateArticle;
+const mapStateToProps = state =>{
+  return {
+    showMessage: state.showMessage
+  }
+}
+
+export default connect(mapStateToProps)(CreateArticle);
 
 
