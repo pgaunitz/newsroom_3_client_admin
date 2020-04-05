@@ -1,7 +1,8 @@
 const initialState = {
   authenticated: false,
   currentUser: {},
-  articles: []
+  articles: [],
+  showMessage: false
 }
 
 export default initialState

@@ -7,12 +7,18 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         authenticated: true,
-        currentUser: action.payload.currentUser
+        currentUser: action.payload.currentUser,
       };
     case actionTypes.GET_ARTICLE_DATA:
       return {
         ...state,
-        ...action.payload
+        ...action.payload,
+      };
+
+    case actionTypes.SHOW_PUBLISH_MESSAGE:
+      return {
+        ...state,
+        ...action.payload,
       };
     default:
       return state;

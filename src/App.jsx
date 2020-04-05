@@ -21,7 +21,7 @@ const App = props => {
       <Header/>
 
       <LoginForm />
-      {showContent}
+      {props.authenticated && showContent}
     </div>
   );
 };
