@@ -1,4 +1,7 @@
 #background {
-    position: initial;
-    width: 30%;
+  position: initial;
+  width: 30%;
+}
+body {
+    background-color: whitesmoke;
 }

@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import { AUTHENTICATE } from "../state/actions/actionTypes";
 import { Form, Button } from "semantic-ui-react";
 
-const LoginForm = (props) => {
-  const onLogin = async (e) => {
+const LoginForm = props => {
+  const onLogin = async e => {
     try {
       e.preventDefault();
 
@@ -17,8 +17,8 @@ const LoginForm = (props) => {
       props.dispatch({
         type: AUTHENTICATE,
         payload: {
-          currentUser: { email: response.data.email, role: response.data.role },
-        },
+          currentUser: { email: response.data.email, role: response.data.role }
+        }
       });
     } catch (error) {
       console.log(error);
@@ -50,18 +50,19 @@ const LoginForm = (props) => {
           fluid
           label="Password"
         />
-        <Button inverted color = "blue"
-        type="submit">Login</Button>
+        <Button inverted color="blue" type="submit">
+          Login
+        </Button>
       </Form>
     );
   }
   return <div>{login}</div>;
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     currentUser: state.currentUser,
-    authenticated: state.authenticated,
+    authenticated: state.authenticated
   };
 };
 export default connect(mapStateToProps)(LoginForm);

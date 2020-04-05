@@ -6,7 +6,7 @@ import axios from "axios";
 import { Provider } from "react-redux";
 import configureStore from "./state/store/configureStore";
 import "semantic-ui-css/semantic.min.css";
-import "./index.css"
+import "./index.css";
 axios.defaults.baseURL = "https://newsroom3api.herokuapp.com/api/v1";
 
 const store = configureStore();
@@ -22,5 +22,5 @@ ReactDOM.render(
 serviceWorker.unregister();
 
 if (window.Cypress) {
-  window.store = store
+  window.store = store;
 }

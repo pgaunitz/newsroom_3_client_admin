@@ -14,5 +14,4 @@ const Header = () => {
   );
 };
 
-
 export default connect()(Header);
