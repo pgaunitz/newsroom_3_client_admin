@@ -4,10 +4,10 @@ import { Button, Icon, Modal } from "semantic-ui-react";
 import useUnpublishedArticles from "../helpers/unpublishedArticlesHook";
 import { SHOW_PUBLISH_MESSAGE } from "../state/actions/actionTypes";
 
-const UnpublishedArticles = (props) => {
+const UnpublishedArticles = props => {
   const [onPublish, message] = useUnpublishedArticles();
 
-  let articleDisplay = props.articles.map((article) => {
+  let articleDisplay = props.articles.map(article => {
     return (
       <>
         <div id={`article-${article.id}`} key={article.id}>
@@ -23,7 +23,7 @@ const UnpublishedArticles = (props) => {
               onPublish(article.id) &&
                 props.dispatch({
                   type: SHOW_PUBLISH_MESSAGE,
-                  payload: { showMessage: true },
+                  payload: { showMessage: true }
                 });
             }}
           >
@@ -40,7 +40,7 @@ const UnpublishedArticles = (props) => {
                 onClick={() =>
                   props.dispatch({
                     type: SHOW_PUBLISH_MESSAGE,
-                    payload: { showMessage: false },
+                    payload: { showMessage: false }
                   })
                 }
               >
@@ -60,10 +60,10 @@ const UnpublishedArticles = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     articles: state.articles,
-    showMessage: state.showMessage,
+    showMessage: state.showMessage
   };
 };
 
