@@ -1,3 +1,4 @@
+[![Build Status](https://semaphoreci.com/api/v1/carltesio/newsroom_3_client_admin/branches/dependabot-npm_and_yarn-jquery-3-5-0/badge.svg)](https://semaphoreci.com/carltesio/newsroom_3_client_admin)
 ### Authors
 [Emma-Maria Thalen](https://github.com/emtalen)  
 [Philip Gaunitz](https://github.com/pgauntiz)  
